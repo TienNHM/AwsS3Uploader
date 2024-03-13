@@ -166,5 +166,33 @@ namespace AwsS3Uploader
             textBox_LinkImage.Text = url;
             MessageBox.Show("Upload Success");
         }
+
+        private async void button_DownloadFiles_Click(object sender, EventArgs e)
+        {
+            List<string> listUrl = this.richTextBox_FileList.Lines.ToList();
+            var folderPath = this.textBox_Path.Text.Trim();
+            progressBar.Maximum = listUrl.Count;
+            progressBar.Value = 0;
+
+            Stream fileStream;
+            // Download files from list url to local folder
+            using (var httpClient = new HttpClient())
+            {
+                foreach (var url in listUrl)
+                {
+                    var fileName = Path.GetFileName(url);
+                    var filePath = Path.Combine(folderPath, fileName);
+                    fileStream = await httpClient.GetStreamAsync(url);
+                    // Save file to local
+                    using (var fileStreamLocal = new FileStream(filePath, FileMode.Create, FileAccess.Write))
+                    {
+                        fileStream.CopyTo(fileStreamLocal);
+                        progressBar.Value++;
+                        label_ProcessValue.Text = $"{progressBar.Value} / {progressBar.Maximum}";
+                    }
+                }
+            }
+           MessageBox.Show("Download Success");
+        }
     }
 }

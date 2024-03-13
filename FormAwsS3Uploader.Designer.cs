@@ -34,6 +34,11 @@
             this.textBox_LinkImage = new System.Windows.Forms.TextBox();
             this.textBox_UrlFileUpload = new System.Windows.Forms.TextBox();
             this.button_UploadFile = new System.Windows.Forms.Button();
+            this.button_DownloadFiles = new System.Windows.Forms.Button();
+            this.richTextBox_FileList = new System.Windows.Forms.RichTextBox();
+            this.textBox_Path = new System.Windows.Forms.TextBox();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.label_ProcessValue = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Image)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,7 +74,7 @@
             // 
             // textBox_LinkImage
             // 
-            this.textBox_LinkImage.Location = new System.Drawing.Point(27, 312);
+            this.textBox_LinkImage.Location = new System.Drawing.Point(27, 285);
             this.textBox_LinkImage.Name = "textBox_LinkImage";
             this.textBox_LinkImage.Size = new System.Drawing.Size(224, 20);
             this.textBox_LinkImage.TabIndex = 6;
@@ -91,18 +96,66 @@
             this.button_UploadFile.UseVisualStyleBackColor = true;
             this.button_UploadFile.Click += new System.EventHandler(this.button_UploadFile_Click);
             // 
-            // FormAwsUploader
+            // button_DownloadFiles
+            // 
+            this.button_DownloadFiles.Location = new System.Drawing.Point(27, 408);
+            this.button_DownloadFiles.Name = "button_DownloadFiles";
+            this.button_DownloadFiles.Size = new System.Drawing.Size(224, 32);
+            this.button_DownloadFiles.TabIndex = 10;
+            this.button_DownloadFiles.Text = "Download Files";
+            this.button_DownloadFiles.UseVisualStyleBackColor = true;
+            this.button_DownloadFiles.Click += new System.EventHandler(this.button_DownloadFiles_Click);
+            // 
+            // richTextBox_FileList
+            // 
+            this.richTextBox_FileList.Location = new System.Drawing.Point(279, 23);
+            this.richTextBox_FileList.Name = "richTextBox_FileList";
+            this.richTextBox_FileList.Size = new System.Drawing.Size(644, 357);
+            this.richTextBox_FileList.TabIndex = 11;
+            this.richTextBox_FileList.Text = "";
+            // 
+            // textBox_Path
+            // 
+            this.textBox_Path.Location = new System.Drawing.Point(27, 382);
+            this.textBox_Path.Name = "textBox_Path";
+            this.textBox_Path.Size = new System.Drawing.Size(224, 20);
+            this.textBox_Path.TabIndex = 12;
+            this.textBox_Path.Text = "D:/";
+            // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(279, 416);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(644, 23);
+            this.progressBar.Step = 1;
+            this.progressBar.TabIndex = 13;
+            // 
+            // label_ProcessValue
+            // 
+            this.label_ProcessValue.Location = new System.Drawing.Point(279, 390);
+            this.label_ProcessValue.Name = "label_ProcessValue";
+            this.label_ProcessValue.Size = new System.Drawing.Size(644, 23);
+            this.label_ProcessValue.TabIndex = 14;
+            this.label_ProcessValue.Text = "0 / 0";
+            this.label_ProcessValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // FormAwsS3Uploader
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(274, 345);
+            this.ClientSize = new System.Drawing.Size(947, 459);
+            this.Controls.Add(this.label_ProcessValue);
+            this.Controls.Add(this.progressBar);
+            this.Controls.Add(this.textBox_Path);
+            this.Controls.Add(this.richTextBox_FileList);
+            this.Controls.Add(this.button_DownloadFiles);
             this.Controls.Add(this.button_UploadFile);
             this.Controls.Add(this.textBox_UrlFileUpload);
             this.Controls.Add(this.textBox_LinkImage);
             this.Controls.Add(this.button_Upload);
             this.Controls.Add(this.button_ChooseImage);
             this.Controls.Add(this.pictureBox_Image);
-            this.Name = "FormAwsUploader";
+            this.Name = "FormAwsS3Uploader";
             this.Text = "AWS S3 Uploader";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Image)).EndInit();
             this.ResumeLayout(false);
@@ -117,6 +170,11 @@
         private System.Windows.Forms.TextBox textBox_LinkImage;
         private System.Windows.Forms.TextBox textBox_UrlFileUpload;
         private System.Windows.Forms.Button button_UploadFile;
+        private System.Windows.Forms.Button button_DownloadFiles;
+        private System.Windows.Forms.RichTextBox richTextBox_FileList;
+        private System.Windows.Forms.TextBox textBox_Path;
+        private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.Label label_ProcessValue;
     }
 }
 
