@@ -170,6 +170,7 @@ namespace AwsS3Uploader
         private async void button_DownloadFiles_Click(object sender, EventArgs e)
         {
             List<string> listUrl = this.richTextBox_FileList.Lines.ToList();
+            List<string> listErrorUrls = new List<string>();
             var folderPath = this.textBox_Path.Text.Trim();
             progressBar.Maximum = listUrl.Count;
             progressBar.Value = 0;
@@ -180,19 +181,28 @@ namespace AwsS3Uploader
             {
                 foreach (var url in listUrl)
                 {
-                    var fileName = Path.GetFileName(url);
-                    var filePath = Path.Combine(folderPath, fileName);
-                    fileStream = await httpClient.GetStreamAsync(url);
-                    // Save file to local
-                    using (var fileStreamLocal = new FileStream(filePath, FileMode.Create, FileAccess.Write))
+                    try
                     {
-                        fileStream.CopyTo(fileStreamLocal);
-                        progressBar.Value++;
-                        label_ProcessValue.Text = $"{progressBar.Value} / {progressBar.Maximum}";
+                        var fileName = Path.GetFileName(url.Trim());
+                        var filePath = Path.Combine(folderPath, fileName);
+                        fileStream = await httpClient.GetStreamAsync(url.Trim());
+                        // Save file to local
+                        using (var fileStreamLocal = new FileStream(filePath, FileMode.Create, FileAccess.Write))
+                        {
+                            fileStream.CopyTo(fileStreamLocal);
+                        }
                     }
+                    catch (Exception ex)
+                    {
+                        var error = $"Error: {ex.Message} - {url}";
+                        listErrorUrls.Add(error);
+                    }
+                    progressBar.Value++;
+                    label_ProcessValue.Text = $"{progressBar.Value} / {listErrorUrls.Count} / {progressBar.Maximum}";
                 }
             }
-           MessageBox.Show("Download Success");
+            this.richTextBox_FileList.Lines = listErrorUrls.ToArray();
+            MessageBox.Show("Download Success");
         }
     }
 }

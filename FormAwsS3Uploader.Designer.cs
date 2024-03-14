@@ -136,7 +136,7 @@
             this.label_ProcessValue.Name = "label_ProcessValue";
             this.label_ProcessValue.Size = new System.Drawing.Size(644, 23);
             this.label_ProcessValue.TabIndex = 14;
-            this.label_ProcessValue.Text = "0 / 0";
+            this.label_ProcessValue.Text = "0 / 0 / 0";
             this.label_ProcessValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // FormAwsS3Uploader
